@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>	
+#define VOL1 3  
+#define VOL2 4 
+int a;
+int temp[7];
+int ip2bin(int a)
+{
+	int *zeiger;
+	zeiger = temp;
+	for(int n= 7;n>=0;n--)
+	{
+		if(a<pow(2,n))					
+		{
+			temp[n]=0;				
+		}
+		else							
+		{
+			temp[n]=1;
+			a = a - pow(2,n);
+		}
+		printf("%d ",  *(zeiger+n));
+    }
+	printf("\n");
+	a= *zeiger;
+	return a;
+}
+
+
+
+int main()
+{
+	printf("Bitte geben Sie bitte 4 Zahlen von je 0 - 255 ein: \n");
+	int dez[VOL1][VOL2];
+	for(int i=0; i < 3; i++)
+	{
+		for(int j=0; j < 4; j++)
+		{
+			eingabe:
+			printf("Wert für dez[%d][%d]:", i, j);
+	        scanf("%d", &dez[i][j]);
+		 	if(dez[i][j]>255 || dez[i][j]<0)
+			{
+				printf("falsche Eingabe\n");
+				goto eingabe;
+			}
+		}
+	}
+	printf("\n\n");
+	for(int i=0; i < 3; i++)
+    {
+		for(int j=0; j < 4 ; j++)
+		{
+			ip2bin(dez[i][j]);
+		}
+		printf("\n");
+    }
+    return 0;
+}
